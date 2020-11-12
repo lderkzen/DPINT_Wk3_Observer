@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DPINT_Wk3_Observer.Model
 {
-    public class Aankomsthal
+    public class Aankomsthal : IObserver<Baggageband>
     {
         // TODO: Hier een ObservableCollection van maken, dan weten we wanneer er vluchten bij de wachtrij bij komen of afgaan.
         public List<Vlucht> WachtendeVluchten { get; private set; }
@@ -50,5 +50,26 @@ namespace DPINT_Wk3_Observer.Model
                 legeBand.HandelNieuweVluchtAf(volgendeVlucht);
             }
         }
-    }
+
+		public void OnNext(Baggageband obj)
+		{
+			//if (!(obj is null))
+			//{
+			//	for (int i = 0; i < Baggagebanden.Count; i++) {
+			//		if (Baggagebanden[i].Naam == obj.Naam)
+			//		{
+						
+			//			return;
+			//		}
+			//	}
+			//}
+		}
+
+		public void OnError(Exception error)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void OnCompleted() => throw new NotImplementedException();
+	}
 }
