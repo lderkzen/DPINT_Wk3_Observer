@@ -24,12 +24,16 @@ namespace DPINT_Wk3_Observer.Model
 
 		public IDisposable Subscribe(IObserver<T> observer)
 		{
+			_observers.Add(observer);
 			return new Unsubscriber(() => _observers.Remove(observer));
 		}
 
 		protected void Notify(T subject)
 		{
-			throw new NotImplementedException();
+			foreach (var obs in _observers)
+			{
+				obs.OnNext(subject);
+			}
 		}
 
 		public void Dispose()
